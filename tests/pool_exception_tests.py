@@ -22,7 +22,7 @@ class ActivePoolErrorTestCase(unittest.TestCase):
         self.assertEqual(self.exception.pid, self.pid)
 
     def test_str_value(self):
-        expectation = 'Pool %s has at least one active connection' % self.pid
+        expectation = 'Pool {0!s} has at least one active connection'.format(self.pid)
         self.assertEqual(str(self.exception), expectation)
 
 
@@ -36,7 +36,7 @@ class ConnectionBusyErrorTestCase(unittest.TestCase):
         self.assertEqual(self.exception.cid, self.cid)
 
     def test_str_value(self):
-        expectation = 'Connection %s is busy' % self.cid
+        expectation = 'Connection {0!s} is busy'.format(self.cid)
         self.assertEqual(str(self.exception), expectation)
 
 
@@ -54,7 +54,7 @@ class ConnectionNotFoundErrorTestCase(unittest.TestCase):
         self.assertEqual(self.exception.pid, self.pid)
 
     def test_str_value(self):
-        expectation = 'Connection %s not found in pool %s' % (self.cid,
+        expectation = 'Connection {0!s} not found in pool {1!s}'.format(self.cid,
                                                               self.pid)
         self.assertEqual(str(self.exception), expectation)
 
@@ -69,7 +69,7 @@ class NoIdleConnectionsErrorTestCase(unittest.TestCase):
         self.assertEqual(self.exception.pid, self.pid)
 
     def test_str_value(self):
-        expectation = 'Pool %s has no idle connections' % self.pid
+        expectation = 'Pool {0!s} has no idle connections'.format(self.pid)
         self.assertEqual(str(self.exception), expectation)
 
 
@@ -83,5 +83,5 @@ class PoolFullErrorTestCase(unittest.TestCase):
         self.assertEqual(self.exception.pid, self.pid)
 
     def test_str_value(self):
-        expectation = 'Pool %s is at its maximum capacity' % self.pid
+        expectation = 'Pool {0!s} is at its maximum capacity'.format(self.pid)
         self.assertEqual(str(self.exception), expectation)

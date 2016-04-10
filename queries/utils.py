@@ -106,7 +106,7 @@ def urlparse(url):
     :rtype: Parsed
 
     """
-    value = 'http%s' % url[5:] if url[:5] == 'postgresql' else url
+    value = 'http{0!s}'.format(url[5:]) if url[:5] == 'postgresql' else url
     parsed = _urlparse.urlparse(value)
 
     # Python 2.6 hack

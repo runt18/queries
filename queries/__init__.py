@@ -64,10 +64,10 @@ def uri(host='localhost', port=5432, dbname='postgres', user='postgres',
 
     """
     if port:
-        host = '%s:%s' % (host, port)
+        host = '{0!s}:{1!s}'.format(host, port)
     if password:
-        return 'postgresql://%s:%s@%s/%s' % (user, password, host, dbname)
-    return 'postgresql://%s@%s/%s' % (user, host, dbname)
+        return 'postgresql://{0!s}:{1!s}@{2!s}/{3!s}'.format(user, password, host, dbname)
+    return 'postgresql://{0!s}@{1!s}/{2!s}'.format(user, host, dbname)
 
 
 # For ease of access to different cursor types

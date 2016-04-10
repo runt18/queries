@@ -60,7 +60,7 @@ class Results(object):
         return bool(self.cursor.rowcount)
 
     def __repr__(self):
-        return '<queries.%s rows=%s>' % (self.__class__.__name__, len(self))
+        return '<queries.{0!s} rows={1!s}>'.format(self.__class__.__name__, len(self))
 
     def as_dict(self):
         """Return a single row result as a dictionary. If the results contain

@@ -418,7 +418,7 @@ class PoolManager(object):
 
         """
         if pid in cls._pools:
-            raise KeyError('Pool %s already exists' % pid)
+            raise KeyError('Pool {0!s} already exists'.format(pid))
         with cls._lock:
             LOGGER.debug("Creating Pool: %s (%i/%i)", pid, idle_ttl, max_size)
             cls._pools[pid] = Pool(pid, idle_ttl, max_size)
@@ -581,7 +581,7 @@ class PoolManager(object):
 
         """
         if pid not in cls._pools:
-            raise KeyError('Pool %s has not been created' % pid)
+            raise KeyError('Pool {0!s} has not been created'.format(pid))
 
 
 class ConnectionException(Exception):
@@ -603,28 +603,28 @@ class PoolConnectionException(Exception):
 class ActivePoolError(PoolException):
     """Raised when removing a pool that has active connections"""
     def __str__(self):
-        return 'Pool %s has at least one active connection' % self.pid
+        return 'Pool {0!s} has at least one active connection'.format(self.pid)
 
 
 class ConnectionBusyError(ConnectionException):
     """Raised when trying to lock a connection that is already busy"""
     def __str__(self):
-        return 'Connection %s is busy' % self.cid
+        return 'Connection {0!s} is busy'.format(self.cid)
 
 
 class ConnectionNotFoundError(PoolConnectionException):
     """Raised if a specific connection is not found in the pool"""
     def __str__(self):
-        return 'Connection %s not found in pool %s' % (self.cid, self.pid)
+        return 'Connection {0!s} not found in pool {1!s}'.format(self.cid, self.pid)
 
 
 class NoIdleConnectionsError(PoolException):
     """Raised if a pool does not have any idle, open connections"""
     def __str__(self):
-        return 'Pool %s has no idle connections' % self.pid
+        return 'Pool {0!s} has no idle connections'.format(self.pid)
 
 
 class PoolFullError(PoolException):
     """Raised when adding a connection to a pool that has hit max-size"""
     def __str__(self):
-        return 'Pool %s is at its maximum capacity' % self.pid
+        return 'Pool {0!s} is at its maximum capacity'.format(self.pid)
